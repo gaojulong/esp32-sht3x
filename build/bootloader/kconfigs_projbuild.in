@@ -1,0 +1,3 @@
+source "/Users/apple/esp/esp-idf/components/bootloader/Kconfig.projbuild"
+source "/Users/apple/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "/Users/apple/esp/esp-idf/components/partition_table/Kconfig.projbuild"

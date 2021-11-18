@@ -1,0 +1,20 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/Users/apple/esp/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/Users/apple/esp/workspace/esp32-sht30/build/bootloader",
+    "config_file":        "/Users/apple/esp/workspace/esp32-sht30/sdkconfig",
+    "config_defaults":    "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v4.3.1-dirty",
+    "target":             "esp32c3",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "riscv32-esp-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/Users/apple/esp/esp-idf/components/efuse/Kconfig;/Users/apple/esp/esp-idf/components/esp32c3/Kconfig;/Users/apple/esp/esp-idf/components/esp_common/Kconfig;/Users/apple/esp/esp-idf/components/esp_system/Kconfig;/Users/apple/esp/esp-idf/components/log/Kconfig;/Users/apple/esp/esp-idf/components/newlib/Kconfig;/Users/apple/esp/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/Users/apple/esp/esp-idf/components/bootloader/Kconfig.projbuild;/Users/apple/esp/esp-idf/components/esptool_py/Kconfig.projbuild;/Users/apple/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32c3", "esp_common", "esp_hw_support", "esp_rom", "esp_system", "esptool_py", "hal", "log", "main", "micro-ecc", "newlib", "partition_table", "riscv", "soc", "spi_flash", "" ],
+    "build_component_paths" : [ "/Users/apple/esp/esp-idf/components/bootloader", "/Users/apple/esp/esp-idf/components/bootloader_support", "/Users/apple/esp/esp-idf/components/efuse", "/Users/apple/esp/esp-idf/components/esp32c3", "/Users/apple/esp/esp-idf/components/esp_common", "/Users/apple/esp/esp-idf/components/esp_hw_support", "/Users/apple/esp/esp-idf/components/esp_rom", "/Users/apple/esp/esp-idf/components/esp_system", "/Users/apple/esp/esp-idf/components/esptool_py", "/Users/apple/esp/esp-idf/components/hal", "/Users/apple/esp/esp-idf/components/log", "/Users/apple/esp/esp-idf/components/bootloader/subproject/main", "/Users/apple/esp/esp-idf/components/bootloader/subproject/components/micro-ecc", "/Users/apple/esp/esp-idf/components/newlib", "/Users/apple/esp/esp-idf/components/partition_table", "/Users/apple/esp/esp-idf/components/riscv", "/Users/apple/esp/esp-idf/components/soc", "/Users/apple/esp/esp-idf/components/spi_flash", "" ]
+}
