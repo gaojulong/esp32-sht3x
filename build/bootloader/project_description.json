@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "/Users/apple/esp/esp-idf/components/bootloader/subproject",
-    "build_dir":          "/Users/apple/esp/workspace/esp32-sht30/build/bootloader",
-    "config_file":        "/Users/apple/esp/workspace/esp32-sht30/sdkconfig",
+    "build_dir":          "/Users/apple/esp/releases/esp32-sht3x/build/bootloader",
+    "config_file":        "/Users/apple/esp/releases/esp32-sht3x/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",

@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/apple/esp/workspace/esp32-sht30/build/bootloader/esp-idf/cmake_install.cmake")
+  include("/Users/apple/esp/releases/esp32-sht3x/build/bootloader/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/apple/esp/workspace/esp32-sht30/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/apple/esp/releases/esp32-sht3x/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/apple/esp/workspace/esp32-sht30/components/sht30
+# Install script for directory: /Users/apple/esp/releases/esp32-sht3x/components/sht30
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

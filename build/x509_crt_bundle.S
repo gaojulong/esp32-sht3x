@@ -1,4 +1,4 @@
-/* * Data converted from /Users/apple/esp/workspace/esp32-sht30/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /Users/apple/esp/releases/esp32-sht3x/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

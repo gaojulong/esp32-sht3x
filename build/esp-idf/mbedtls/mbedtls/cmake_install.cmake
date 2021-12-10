@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/apple/esp/workspace/esp32-sht30/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
-  include("/Users/apple/esp/workspace/esp32-sht30/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
+  include("/Users/apple/esp/releases/esp32-sht3x/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
+  include("/Users/apple/esp/releases/esp32-sht3x/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
 
 endif()
 

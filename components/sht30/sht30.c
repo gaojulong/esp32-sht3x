@@ -43,14 +43,69 @@ esp_err_t i2c_master_init(void)
     }
     return i2c_driver_install(i2c_master_port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
 }
-static esp_err_t i2c_master_sensor_sht30(i2c_port_t i2c_num, float *temp_data, float *hum_data)
+// static esp_err_t i2c_master_sensor_sht30_init(i2c_port_t i2c_num)
+// {
+//     int ret;
+//     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+//     i2c_master_start(cmd);
+//     i2c_master_write_byte(cmd, SHT30_SENSOR_ADDR << 1 | WRITE_BIT, ACK_CHECK_DIS);
+//     i2c_master_write_byte(cmd, 0xF3, ACK_CHECK_DIS);
+//     i2c_master_write_byte(cmd, 0x2D, ACK_CHECK_DIS);
+//     i2c_master_stop(cmd);
+//     ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
+//     i2c_cmd_link_delete(cmd);
+//     if (ret != ESP_OK) {
+//         return ret;
+//     }
+//     vTaskDelay(30 / portTICK_RATE_MS);
+//     return ret;
+// }
+
+static esp_err_t i2c_master_sensor_sht30_init(i2c_port_t i2c_num)
 {
     int ret;
     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
     i2c_master_start(cmd);
     i2c_master_write_byte(cmd, SHT30_SENSOR_ADDR << 1 | WRITE_BIT, ACK_CHECK_DIS);
-    i2c_master_write_byte(cmd, 0x21, ACK_CHECK_DIS);
-    i2c_master_write_byte(cmd, 0x30, ACK_CHECK_DIS);
+    i2c_master_write_byte(cmd, 0xF3, ACK_CHECK_DIS);
+    i2c_master_write_byte(cmd, 0x2D, ACK_CHECK_DIS);
+    i2c_master_stop(cmd);
+    ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
+    i2c_cmd_link_delete(cmd);
+    if (ret != ESP_OK) {
+        return ret;
+    }
+    vTaskDelay(30 / portTICK_RATE_MS);
+
+    uint8_t data[3];
+    cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, SHT30_SENSOR_ADDR<< 1 | READ_BIT, ACK_CHECK_DIS);
+    i2c_master_read(cmd, &data[0], sizeof(data), ACK_VAL);
+    i2c_master_stop(cmd);
+    ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
+    i2c_cmd_link_delete(cmd);
+    vTaskDelay(50 / portTICK_RATE_MS);
+    for (uint8_t i = 0; i < sizeof(data); i++)
+    {
+        printf("status:=%d:%d\n",i,data[i]);
+    }
+    if (crc8(data,2) != data[2])
+    {
+        ESP_LOGE(TAG,"CRC check for failed\n");
+        return ret;
+    }
+    return ret;
+}
+
+static esp_err_t i2c_master_sensor_sht30_read(i2c_port_t i2c_num, float *temp_data, float *hum_data)
+{
+    int ret;
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, SHT30_SENSOR_ADDR << 1 | WRITE_BIT, ACK_CHECK_DIS);
+    i2c_master_write_byte(cmd, 0x2C, ACK_CHECK_DIS);
+    i2c_master_write_byte(cmd, 0x06, ACK_CHECK_DIS);
     i2c_master_stop(cmd);
     ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
     i2c_cmd_link_delete(cmd);
@@ -91,8 +146,9 @@ void i2c_sht30_task(void *arg)
     
     int cnt = 0;
     while (1) {
+        vTaskDelay(1000/ portTICK_RATE_MS);
         ESP_LOGI(TAG, "TASK[%d] test cnt: %d", task_idx, cnt++);
-        ret = i2c_master_sensor_sht30(I2C_MASTER_NUM, &temp_data, &hum_data);
+        ret = i2c_master_sensor_sht30_read(I2C_MASTER_NUM, &temp_data, &hum_data);
         if (ret == ESP_ERR_TIMEOUT) {
             ESP_LOGE(TAG, "I2C Timeout");
         } else if (ret == ESP_OK) {
